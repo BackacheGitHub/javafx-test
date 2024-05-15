@@ -1,5 +1,7 @@
 package mvvm;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -8,6 +10,15 @@ import javafx.beans.property.StringProperty;
  */
 class Person {
     private final SimpleStringProperty name = new SimpleStringProperty("");
+
+    Person() {
+        name.addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+//                System.out.println("invalidated listener triggered, name: " + name.get());
+            }
+        });
+    }
 
     public String getName() {
         return name.get();
